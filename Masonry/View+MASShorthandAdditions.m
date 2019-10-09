@@ -8,7 +8,15 @@
 
 #import "View+MASShorthandAdditions.h"
 
-#ifdef MAS_SHORTHAND
+#define MAS_ATTR_FORWARD(attr)  \
+- (MASViewAttribute *)attr {    \
+    return [self mas_##attr];   \
+}
+
+#define MAS_ATTR_FORWARD_AVAILABLE(attr, available)  \
+- (MASViewAttribute *)attr available {    \
+    return [self mas_##attr];   \
+}
 
 @implementation MAS_VIEW (MASShorthandAdditions)
 
@@ -68,5 +76,3 @@ MAS_ATTR_FORWARD_AVAILABLE(safeAreaLayoutGuideCenterY, NS_AVAILABLE_IOS(11.0));
 }
 
 @end
-
-#endif
